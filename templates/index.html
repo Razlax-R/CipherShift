@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shift Key Cipher Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>🔐 Shift Key Cipher Game</h1>
+
+<!-- RULES TOGGLE BUTTON -->
+<button onclick="toggleRules()" id="showRulesBtn">View Rules 📜</button>
+
+<!-- RULES SECTION (HIDDEN BY DEFAULT) -->
+<div id="rules" style="display:none;">
+    <h3>Game Rules 📜</h3>
+
+    <p><strong>About Caesar Cipher:</strong> It is a simple encryption technique where each letter in a message is shifted by a fixed number of positions in the alphabet. For example, with a shift of 3, "a" becomes "d", "b" becomes "e", and so on.</p>
+
+    <ul>
+        <li>1️⃣ Guess the correct shift key for the encrypted message.</li>
+        <li>2️⃣ You have <strong>3 attempts</strong> to guess the shift key.</li>
+        <li>3️⃣ After guessing the shift key, decrypt the message.</li>
+        <li>4️⃣ You have <strong>2 attempts</strong> to type the correct decrypted message.</li>
+        <li>5️⃣ If you fail, the computer will show the correct shift and message.</li>
+        <li>6️⃣ Hints are provided for each word (e.g., animal, fruit, etc.).</li>
+        <li>7️⃣ You can restart the game anytime using the Start/Restart button.</li>
+    </ul>
+    <button onclick="toggleRules()">Hide Rules ❌</button>
+</div>
+
+<!-- START GAME FORM -->
+<form method="post">
+    <h3>Start / Restart Game</h3>
+    <input type="number" name="min_shift" placeholder="Min shift" required>
+    <input type="number" name="max_shift" placeholder="Max shift" required>
+    <button name="action" value="start">Start / Restart</button>
+</form>
+
+{% if encrypted_message %}
+    <h2>Encrypted Message:</h2>
+    <p>{{ encrypted_message }}</p>
+    <p>Hint: {{ hint }}</p>
+
+    {% if not shift_found and shift_attempts > 0 %}
+    <form method="post">
+        <input type="number" name="user_shift" placeholder="Guess shift key" required>
+        <button name="action" value="check_shift">Check Shift</button>
+    </form>
+    {% endif %}
+
+    {% if shift_found and message_attempts > 0 %}
+    <form method="post">
+        <input type="text" name="user_message" placeholder="Decrypted message" required>
+        <button name="action" value="check_message">Check Message</button>
+    </form>
+    {% endif %}
+{% endif %}
+
+<p class="result">{{ result }}</p>
+
+<script>
+function toggleRules() {
+    var rules = document.getElementById("rules");
+    var btn = document.getElementById("showRulesBtn");
+    if (rules.style.display === "none") {
+        rules.style.display = "block";
+        btn.style.display = "none";
+    } else {
+        rules.style.display = "none";
+        btn.style.display = "block";
+    }
+}
+</script>
+
+</body>
+</html>
