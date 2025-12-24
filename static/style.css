@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to right, rgb(169, 188, 230), rgb(106, 182, 229));
+
+    padding: 10px;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+    font-size: 16px;
+     background-color: rgb(49, 138, 220);
+    color: black;
+    border:none;
+    border-radius: 5px;
+
+}
+input:hover,button:hover{
+    color:black;
+    background-color: whitesmoke;
+    
+}
+button{
+    padding: 8px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: rgb(49, 138, 220);
+    color: black;
+    border: none;
+    border-radius: 5px;
+
+}
+
+#rules {
+    border: 2px solid #333;
+    padding: 10px;
+    margin: 10px auto;
+    width: 50%;
+    background-color: #fffbe6;
+    text-align: left;
+}
+
+#showRulesBtn {
+    padding: 8px 12px;
+    margin: 10px;
+}
+
+.result {
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 18px;
+}
